@@ -1,0 +1,23 @@
+{% extends 'bookstore/base.html'%}
+
+{%block content%}
+
+<div class="container-fluid">
+	<div class="row col-sm-4">
+		<img src="{{pic}}" class="img-thumbnail" alt="book-img" width="304" height="236">
+	</div>
+	<div class="row col-sm-8">
+		<div class='list-group'>
+			<h3>{{ book.title }}</h3>
+			<hr>
+			<p>ISBN: {{ book.isbn }}</p>
+			<p>Price: {{ book.price }} Euros</p>
+			<p>Category: {{ book.category }}</p>
+			<hr>
+			<a href="{% url 'booksapi:apiSearch' book.isbn %}" class="btn btn-primary" role="button" target="_blank">Google Books api</a>
+			<a href="#" class="btn btn-success" role="button">Add to cart</a>
+		</div>
+	</div>
+</div>
+{% endblock %}
+{# <img class="img-responsive" src="{{pic}}" alt="book-image" style="height:400px;">  #}
