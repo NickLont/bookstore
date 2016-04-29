@@ -5,23 +5,29 @@ from .models import Book
 import json, urllib2
 
 def index(request):
-	return render(request, 'bookstore/index.html')
+	book1 = Book.objects.get(isbn=9780345339706)
+	print "To book1 einai: ",book1
+	book2 = Book.objects.get(isbn=9780307277671)
+	book3 = Book.objects.get(isbn=9780446310789)
+	book4 = Book.objects.get(isbn=9780141380322)
+	context = {'book1':book1, 'book2':book2, 'book3':book3, 'book4':book4}
+
+	return render(request, 'bookstore/index.html', context)
 
 class BookListView(SortableListView):
 	default_sort_field = 'title'
 	allowed_sort_fields = {default_sort_field: {'default_direction': '-',
                                                 'verbose_name': 'Title'},
 					        'category':{'default_direction': '',
-					        			'verbose_name': 'Categories'},
+					        			'verbose_name': 'Category'},
 					        'price':{'default_direction': '',
 					        			'verbose_name': 'Price'}}                                       
-	paginate_by = 5
+	paginate_by = 10
 	model = Book
 	template_name = "bookstore/list.html"    
 
 def details(request, isbn):
 	data = json.load(urllib2.urlopen('https://www.googleapis.com/books/v1/volumes?q=isbn:'+isbn))
-	# pic = data['items'][0]['volumeInfo']['imageLinks']['thumbnail']
 	book = Book.objects.get(isbn=isbn)
 	if 'imageLinks' in data['items'][0]['volumeInfo']:
 		pic = data['items'][0]['volumeInfo']['imageLinks']['thumbnail']
