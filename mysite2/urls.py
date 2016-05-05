@@ -24,4 +24,5 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^bookstore/', include('bookstore.urls')),
     url(r'^booksapi/', include('booksapi.urls')),
+    url(r'^soap/', include('soapQntWS.urls')),
 ]
