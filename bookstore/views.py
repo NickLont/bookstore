@@ -3,10 +3,12 @@ from sortable_listview import SortableListView
 from django.views.generic.detail import DetailView
 from .models import Book
 import json, urllib2
+from suds.client import Client
+
+soap_client = Client('http://localhost:8080/bookQntWS/bookWS?wsdl')
 
 def index(request):
 	book1 = Book.objects.get(isbn=9780345339706)
-	print "To book1 einai: ",book1
 	book2 = Book.objects.get(isbn=9780307277671)
 	book3 = Book.objects.get(isbn=9780446310789)
 	book4 = Book.objects.get(isbn=9780141380322)
@@ -29,9 +31,11 @@ class BookListView(SortableListView):
 def details(request, isbn):
 	data = json.load(urllib2.urlopen('https://www.googleapis.com/books/v1/volumes?q=isbn:'+isbn))
 	book = Book.objects.get(isbn=isbn)
+	results = soap_client.service.findByIsbn(isbn)
+	print results
 	if 'imageLinks' in data['items'][0]['volumeInfo']:
 		pic = data['items'][0]['volumeInfo']['imageLinks']['thumbnail']
 	else:		
 		pic='http://www.clker.com/cliparts/q/L/P/Y/t/6/no-image-available-md.png'
-	context={'pic':pic, 'book':book}
+	context={'pic':pic, 'book':book, 'results':results}
 	return render(request, 'bookstore/details.html', context)
