@@ -1,0 +1,29 @@
+{% extends 'bookstore/base.html'%}
+
+{%block content%}
+
+<div class="container">
+	<div class="row col-sm-12">
+		<div class="row col-sm-4">
+			<img src="{{pic}}" class="img-thumbnail" alt="book-img" width="304" height="236">
+		</div>
+		<div class="row col-sm-8">
+			<div class='list-group'>
+				<h3>{{ book.title }}</h3>
+				<hr>				
+				<p>In Stock: {{results.quantity}}</p>
+				<hr>
+				<form action="{% url 'soap:soapDetailed' book.isbn %}" method="post">
+					{% csrf_token %}
+					{{ form }}
+					<input type="submit" value="Submit Q" />
+					{%if change%}
+						<p style="color:green;">Success!</p>
+					{% endif %}
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}
+{# <img class="img-responsive" src="{{pic}}" alt="book-image" style="height:400px;">  #}
