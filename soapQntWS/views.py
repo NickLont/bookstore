@@ -13,7 +13,7 @@ class BookListView(ListView):
 	model = Book
 	template_name = 'soapQntWS/quantList.html'
 
-def quantityDetails(request, isbn, newQuantity):
+def quantityDetails(request, isbn):
 	data = json.load(urllib2.urlopen('https://www.googleapis.com/books/v1/volumes?q=isbn:'+isbn))
 	book = Book.objects.get(isbn=isbn)
 	results = soap_client.service.findByIsbn(isbn)
