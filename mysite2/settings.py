@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'booksapi',
     'soapQntWS',
     'sortable_listview',
+    'registration'
 ]
 
 MIDDLEWARE_CLASSES = [
