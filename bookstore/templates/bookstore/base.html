@@ -54,6 +54,14 @@
                     <li>
                         <a href="{% url 'bookstore:about' %}">About Us</a>
                     </li>
+                    <li>
+                        {%if user.is_authenticated%}
+                        <a href="/accounts/logout">Logout {{ user.username}}</a> 
+                        {% else %}
+                        <a href="/accounts/login/?next={%firstof request.path '/'%}">Login</a>  
+
+                        {% endif %}                     
+                    </li>
                 </ul>
             </div>
             <!-- /.navbar-collapse -->

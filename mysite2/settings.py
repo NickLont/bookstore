@@ -41,7 +41,7 @@ INSTALLED_APPS = [
     'booksapi',
     'soapQntWS',
     'sortable_listview',
-    'registration'
+    'registration',
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -69,6 +69,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                "django.core.context_processors.request",
             ],
         },
     },
@@ -129,3 +130,5 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = (
     STATIC_PATH,
 )
+ACCOUNT_ACTIVATION_DAYS = 7 # One-week activation window;
+REGISTRATION_OPEN = True
