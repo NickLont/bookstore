@@ -11,7 +11,7 @@ soap_client = Client('http://localhost:8080/bookQntWS/bookWS?wsdl')
 
 
 class BookListView(ListView):
-	model = Book
+	queryset = Book.objects.order_by('title')
 	template_name = 'soapQntWS/quantList.html'
 
 def quantityDetails(request, isbn):

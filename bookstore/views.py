@@ -32,10 +32,12 @@ def details(request, isbn):
 	data = json.load(urllib2.urlopen('https://www.googleapis.com/books/v1/volumes?q=isbn:'+isbn))
 	book = Book.objects.get(isbn=isbn)
 	results = soap_client.service.findByIsbn(isbn)
-	print results
 	if 'imageLinks' in data['items'][0]['volumeInfo']:
 		pic = data['items'][0]['volumeInfo']['imageLinks']['thumbnail']
 	else:		
 		pic='http://www.clker.com/cliparts/q/L/P/Y/t/6/no-image-available-md.png'
 	context={'pic':pic, 'book':book, 'results':results}
 	return render(request, 'bookstore/details.html', context)
+
+def about(request):
+	return render(request, 'bookstore/about.html')
