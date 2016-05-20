@@ -1,3 +1,5 @@
 Django==1.9
+django-carton==1.2.1
+django-registration==2.0.4
 django-sortable-listview==0.41
 suds==0.4

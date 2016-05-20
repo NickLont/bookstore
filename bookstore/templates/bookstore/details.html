@@ -1,6 +1,29 @@
 {% extends 'bookstore/base.html'%}
 
 {%block content%}
+<script type="text/javascript">
+	$(document).ready(function () {
+	
+		if('{{user.is_authenticated}}'=='True'){
+			$("#buyButton").removeClass('disabled');
+			$("#buyButton").attr("data-toggle", "modal");
+			$("#msg").css("display", "none");
+		}
+		else{
+			$("#buyButton").addClass('disabled');
+			$("#buyButton").removeAttr('data-toggle');
+		}
+		if({{results.quantity}}>0){
+			$("#buyButton").removeClass('disabled');
+			$("#buyButton").attr("data-toggle", "modal");
+			$("#msg2").css("display", "none");
+		}
+		else{
+			$("#buyButton").addClass('disabled');
+			$("#buyButton").removeAttr('data-toggle');
+		}
+	});
+</script>
 
 <div class="container">
 	<div class="row col-sm-12">
@@ -17,10 +40,11 @@
 				<p>Availability: {{results.quantity}}</p>
 				<hr>
 				<a href="{% url 'booksapi:apiSearch' book.isbn %}" class="btn btn-primary" role="button" target="_blank">Google Books api</a>
-				<a href="{% url 'shopping:shopping-cart-add' book.isbn %}" class="btn btn-success" role="button">Add to cart</a>
+				<a href="{% url 'shopping:shopping-cart-add' book.isbn %}" class="btn btn-success" role="button" id="buyButton">Add to cart</a>
+				<p style="color:red" id="msg">You have to be logged in to use the Cart!</p>
+				<p style="color:red" id="msg2">Out of Stock!</p>
 			</div>
 		</div>
 	</div>
 </div>
 {% endblock %}
-{# <img class="img-responsive" src="{{pic}}" alt="book-image" style="height:400px;">  #}

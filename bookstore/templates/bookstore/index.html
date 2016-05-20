@@ -2,7 +2,8 @@
 {% load staticfiles %}
 
 {% block content %}
-	
+	<link href={%static "css/myCss.css"%} rel="stylesheet">
+
 	<header id="myCarousel" class="carousel slide">
         <!-- Indicators -->
         <ol class="carousel-indicators">
@@ -42,6 +43,8 @@
         </a>
     </header>
     <hr>
+    <h1 class="text-center">Welcome to the Hua Bookstore!</h1>
+    <hr>
     <div class="container">
     	<div class="row">
             <div class="col-lg-12">
@@ -51,16 +54,16 @@
         <!-- /.row -->
 
         <!-- Page Features -->
-        <div class="row text-center">
+        <div class="row text-center" id="bestSellerRow">
 
             <div class="col-md-3 col-sm-6 hero-feature">
                 <div class="thumbnail">
                     <img src={% static "images/book1img.png" %} alt="">
                     <div class="caption">
                         <h3>{{book1.title}}</h3>
-                        <p>The dark, fearsome Ringwraiths were searching for a hobbit. Frodo Baggins knew they were seeking him and the Ring he bore -- the Ring of Power that would enable evil Sauron to destroy all that was good in Middle-earth. Now it is up to Frodo and his faithful servant, Sam, with a small band of companions, to carry the Ring to the one place it could be destroyed -- Mount Doom, in the very center of Sauron's dark kingdom.</p>
+                        <p id="testP">The dark, fearsome Ringwraiths were searching for a hobbit. Frodo Baggins knew they were seeking him and the Ring he bore -- the Ring of Power that would enable evil Sauron to destroy all that was good in Middle-earth. Now it is up to Frodo and his faithful servant, Sam, with a small band of companions, to carry the Ring to the one place it could be destroyed -- Mount Doom, in the very center of Sauron's dark kingdom.</p>
                         <p>
-                            <a href='#' class="btn btn-primary">Buy Now!</a> <a href="{% url 'bookstore:detailedView' book1.isbn %}" class="btn btn-default">More Info</a>
+                            <a href='{% url 'shopping:shopping-cart-add' book1.isbn %}' class="btn btn-primary">Buy Now!</a> <a href="{% url 'bookstore:detailedView' book1.isbn %}" class="btn btn-default">More Info</a>
                         </p>
                     </div>
                 </div>
@@ -73,7 +76,7 @@
                         <h3>{{book2.title}}</h3>
                         <p>Harvard symbologist Robert Langdon and French cryptologist Sophie Neveu work to solve the murder of an elderly curator of the Louvre, a case which leads to clues hidden in the works of Da Vinci and a centuries-old secret society.</p>
                         <p>
-                            <a href="#" class="btn btn-primary">Buy Now!</a> <a href="{% url 'bookstore:detailedView' book2.isbn %}" class="btn btn-default">More Info</a>
+                            <a href="{% url 'shopping:shopping-cart-add' book2.isbn %}" class="btn btn-primary">Buy Now!</a> <a href="{% url 'bookstore:detailedView' book2.isbn %}" class="btn btn-default">More Info</a>
                         </p>
                     </div>
                 </div>
@@ -86,7 +89,7 @@
                         <h3>{{book3.title}}</h3>
                         <p>Compassionate, dramatic, and deeply moving, To Kill A Mockingbird takes readers to the roots of human behavior - to innocence and experience, kindness and cruelty, love and hatred, humor and pathos. Now with over 18 million copies in print and translated into forty languages, this regional story by a young Alabama woman claims universal appeal. Harper Lee always considered her book to be a simple love story. Today it is regarded as a masterpiece of American literature.</p>
                         <p>
-                            <a href="#" class="btn btn-primary">Buy Now!</a> <a href="{% url 'bookstore:detailedView' book3.isbn %}" class="btn btn-default">More Info</a>
+                            <a href="{% url 'shopping:shopping-cart-add' book3.isbn %}" class="btn btn-primary">Buy Now!</a> <a href="{% url 'bookstore:detailedView' book3.isbn %}" class="btn btn-default">More Info</a>
                         </p>
                     </div>
                 </div>
@@ -99,7 +102,7 @@
                         <h3>{{book4.title}}</h3>
                         <p>This much-loved classic picture book follows the caterpillar's week while he eats through a range of foods in preparation for his hibernation and subsequent appearance as a beautiful butterfly. With its die-cut pages and holes to explore, this is a richly satisfying book for children. The cuddly caterpillar toy can be pushed through the giant holes as children follow this simple, hopeful story.</p>
                         <p>
-                            <a href="#" class="btn btn-primary">Buy Now!</a> <a href="{% url 'bookstore:detailedView' book4.isbn %}" class="btn btn-default">More Info</a>
+                            <a href="{% url 'shopping:shopping-cart-add' book4.isbn %}" class="btn btn-primary">Buy Now!</a> <a href="{% url 'bookstore:detailedView' book4.isbn %}" class="btn btn-default">More Info</a>
                         </p>
                     </div>
                 </div>

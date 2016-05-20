@@ -1,0 +1,11 @@
+#bestSellerRow{
+    display: table;
+}
+#bestSellerRow .panel {
+    float: none;
+    display: table-cell;
+    vertical-align: top;
+}
+
+h1 { 
+font-family: 'Gravitas One', cursive; font-weight: 400; }
