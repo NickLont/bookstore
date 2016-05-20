@@ -26,4 +26,5 @@ urlpatterns = [
     url(r'^booksapi/', include('booksapi.urls')),
     url(r'^soap/', include('soapQntWS.urls')),
     url(r'^accounts/', include('registration.backends.simple.urls')), 
+    url(r'^cart/', include('cart.urls')),
 ]
