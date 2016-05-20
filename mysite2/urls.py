@@ -29,5 +29,4 @@ urlpatterns = [
     url(r'^accounts/', include('registration.backends.simple.urls')), 
     url(r'^shopping-cart/', include('shopping.urls')),   
     url(r'^$', RedirectView.as_view(url = '/bookstore', permanent = False)),
-
 ]
