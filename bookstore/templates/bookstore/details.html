@@ -17,7 +17,7 @@
 				<p>Availability: {{results.quantity}}</p>
 				<hr>
 				<a href="{% url 'booksapi:apiSearch' book.isbn %}" class="btn btn-primary" role="button" target="_blank">Google Books api</a>
-				<a href="#" class="btn btn-success" role="button">Add to cart</a>
+				<a href="{% url 'shopping:shopping-cart-add' book.isbn %}" class="btn btn-success" role="button">Add to cart</a>
 			</div>
 		</div>
 	</div>

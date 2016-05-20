@@ -16,6 +16,7 @@ Including another URLconf
 """
 from django.conf.urls import url, include
 from django.contrib import admin
+from django.views.generic.base import RedirectView
 
 admin.autodiscover()
 
@@ -26,5 +27,7 @@ urlpatterns = [
     url(r'^booksapi/', include('booksapi.urls')),
     url(r'^soap/', include('soapQntWS.urls')),
     url(r'^accounts/', include('registration.backends.simple.urls')), 
-    url(r'^shopping-cart/', include('shopping.urls')),
+    url(r'^shopping-cart/', include('shopping.urls')),   
+    url(r'^$', RedirectView.as_view(url = '/bookstore', permanent = False)),
+
 ]

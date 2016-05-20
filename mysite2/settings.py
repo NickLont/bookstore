@@ -133,5 +133,6 @@ STATICFILES_DIRS = (
     STATIC_PATH,
 )
 ACCOUNT_ACTIVATION_DAYS = 7 # One-week activation window;
-REGISTRATION_OPEN = True
-CART_PRODUCT_MODEL = 'bookstore.models.Book'
+REGISTRATION_OPEN = True # No need for e-mail activation
+CART_PRODUCT_MODEL = 'bookstore.models.Book' #Model poy xrisimopoiw sto cart
+LOGIN_REDIRECT_URL = '/bookstore/'

@@ -1,27 +1,38 @@
+{% extends 'bookstore/base.html'%}
+{%block content%}
+
 {% load carton_tags %}
-<html>
-<body>
 
-<h1>Shopping Cart</h1>
 
-{% get_cart as cart %}
-
-    <table border="1">
-    <tr>
-        <th>Product</th>
-        <th>Quantity</th>
-        <th>Price</th>
-    </tr>
-    {% for item in cart.items %}
-    <tr>
-        <td>{{ item.product }}</td>
-        <td>{{ item.quantity }}</td>
-        <td>{{ item.subtotal }}</td>
-    </tr>
+<div class="container">
+    <h2>Shopping Cart</h2>
+    {% get_cart as cart %}
+    <div class="table-responsive">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Product</th>
+            <th>Quantity</th>
+            <th>Price</th>
+          </tr>
+        </thead>    
+        {% for item in cart.items %}
+        <tbody>
+          <tr>
+            <td>{{ item.product }}</td>
+            <td>{{ item.quantity }}</td>
+            <td>{{ item.subtotal }}</td>
+            <td><a href="{% url 'shopping:shopping-cart-remove' item.product.isbn %}" class="btn btn-danger btn-xs">Remove</a></td>
+          </tr>    
         {% endfor %}
-    </table>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>Total: {{ cart.total }}</td>
+          </tr>    
+          </tbody>
+    </div>  
+</div>
+{% endblock %}
 
-    Total: {{ cart.total }}
-
-</body>
-</html>

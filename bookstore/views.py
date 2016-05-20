@@ -4,6 +4,8 @@ from django.views.generic.detail import DetailView
 from .models import Book
 import json, urllib2
 from suds.client import Client
+from registration.backends.simple.views import RegistrationView
+
 
 soap_client = Client('http://localhost:8080/bookQntWS/bookWS?wsdl')
 
@@ -41,3 +43,4 @@ def details(request, isbn):
 
 def about(request):
 	return render(request, 'bookstore/about.html')
+
