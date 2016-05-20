@@ -62,6 +62,11 @@
 
                         {% endif %}                     
                     </li>
+                    <li>
+                        {%if user.is_authenticated%}
+                        <a href="/shopping-cart/show/">Your Cart</a>
+                        {% endif %}
+                    </li>
                 </ul>
             </div>
             <!-- /.navbar-collapse -->

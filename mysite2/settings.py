@@ -42,6 +42,8 @@ INSTALLED_APPS = [
     'soapQntWS',
     'sortable_listview',
     'registration',
+    'carton',
+    'shopping',
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -132,3 +134,4 @@ STATICFILES_DIRS = (
 )
 ACCOUNT_ACTIVATION_DAYS = 7 # One-week activation window;
 REGISTRATION_OPEN = True
+CART_PRODUCT_MODEL = 'bookstore.models.Book'
