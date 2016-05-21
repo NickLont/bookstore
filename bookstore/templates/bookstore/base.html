@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 {%load staticfiles%}
 {% load carton_tags %}
+{% get_cart as my_cart %}
 <html lang="en">
 
 <head>
@@ -72,12 +73,21 @@
                     </li>
                     {% endif%}                    
                     {%if user.is_authenticated%}
-                    <li><a href="/accounts/logout">Logout {{ user.username}}</a> </li>
-                    <li><a href="/shopping-cart/show/">Your Cart </a></li>
+                    <li class="dropdown">
+                        <a href="#" data-toggle="dropdown" class="dropdown-toggle">Welcome {{ user.username}}! <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Profile</a></li>
+                            <li><a href="/accounts/password/reset/">Change Password</a></li>
+                            <li class="divider"></li>
+                            <li><a href="/accounts/logout/">Logout</a></li>
+                        </ul>       
+                    </li> 
+                    <li><a href="/shopping-cart/show/">Your Cart ({{my_cart.count}}) </a></li>
                     {% else %}
                     <li><a href="/accounts/login/?next={%firstof request.path '/'%}">Login</a></li>
                     <li><a href="/accounts/register/">Sign Up</a></li>
-                    {% endif %}                   
+                    {% endif %}     
+                                
                     
                 </ul>
             </div>

@@ -3,25 +3,28 @@
 {%block content%}
 <script type="text/javascript">
 	$(document).ready(function () {
-	
-		if('{{user.is_authenticated}}'=='True'){
+		
+		if('{{user.is_authenticated}}'=='True' && {{results.quantity}}>1){
 			$("#buyButton").removeClass('disabled');
 			$("#buyButton").attr("data-toggle", "modal");
 			$("#msg").css("display", "none");
+			$("#msg2").css("display", "none");
 		}
-		else{
+		else if('{{user.is_authenticated}}'=='True' && {{results.quantity}}<1){
 			$("#buyButton").addClass('disabled');
 			$("#buyButton").removeAttr('data-toggle');
+			$("#msg").css("display", "none");
 		}
-		if({{results.quantity}}>0){
-			$("#buyButton").removeClass('disabled');
-			$("#buyButton").attr("data-toggle", "modal");
+		else if('{{user.is_authenticated}}'=='False' && {{results.quantity}}>1){
+			$("#buyButton").addClass('disabled');
+			$("#buyButton").removeAttr('data-toggle');
 			$("#msg2").css("display", "none");
 		}
 		else{
 			$("#buyButton").addClass('disabled');
 			$("#buyButton").removeAttr('data-toggle');
 		}
+
 	});
 </script>
 
