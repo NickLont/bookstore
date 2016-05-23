@@ -23,9 +23,11 @@ def remove(request,isbn):
 
 
 def show(request):
-	# print request.session['cart']
-	# s= Cart(request.session)
-	# print s.count
+	cart = Cart(request.session)
+	for item in cart.items:
+		print "product: ",item.product
+		print "price: ", item.price
+		print "quantity: ", item.quantity
 	return render(request, 'shopping/show-cart.html')
 
 # def checkout(request ):

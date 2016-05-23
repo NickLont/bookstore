@@ -82,7 +82,7 @@
                             <li><a href="/accounts/logout/">Logout</a></li>
                         </ul>       
                     </li> 
-                    <li><a href="/shopping-cart/show/">Your Cart ({{my_cart.count}}) </a></li>
+                    <li><a href="/shopping-cart/show/">Your Cart ({{my_cart.count}} item/s, {{my_cart.total}} Euros) </a></li>
                     {% else %}
                     <li><a href="/accounts/login/?next={%firstof request.path '/'%}">Login</a></li>
                     <li><a href="/accounts/register/">Sign Up</a></li>

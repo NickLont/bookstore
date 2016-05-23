@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'registration',
     'carton',
     'shopping',
+    'orders',
 ]
 
 MIDDLEWARE_CLASSES = [

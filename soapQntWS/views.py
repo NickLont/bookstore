@@ -6,13 +6,12 @@ import json, urllib2
 from .forms import quantityChange
 
 
-
 soap_client = Client('http://localhost:8080/bookQntWS/bookWS?wsdl')
-
 
 class BookListView(ListView):
 	queryset = Book.objects.order_by('title')
 	template_name = 'soapQntWS/quantList.html'
+
 
 def quantityDetails(request, isbn):
 	data = json.load(urllib2.urlopen('https://www.googleapis.com/books/v1/volumes?q=isbn:'+isbn))
@@ -32,3 +31,4 @@ def quantityDetails(request, isbn):
 		form = quantityChange()		
 		context={'pic':pic, 'book':book, 'results':results, 'form':form}
 	return render(request, 'soapQntWS/details.html', context)
+
