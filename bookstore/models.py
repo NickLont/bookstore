@@ -1,6 +1,6 @@
 from __future__ import unicode_literals
 from django.db import models
-from django.contrib.auth import User
+# from django.contrib.auth import User
 
 class Category(models.Model):
 	SATIRE = 'sat'
@@ -39,13 +39,13 @@ class Book(models.Model):
 	def __str__(self):
 		return self.title
 
-class CartBook(models.Model):
-	cart = models.ForeignKey(Cart, on_delete=models.CASCADE)
-	book = models.ForeignKey(Book)
+# class CartBook(models.Model):
+# 	cart = models.ForeignKey(Cart, on_delete=models.CASCADE)
+# 	book = models.ForeignKey(Book)
 
-class Cart(models.Model):
-	user = models.ForeignKey(User)
-	name = models.CharField(max_length=50)
+# class Cart(models.Model):
+# 	user = models.ForeignKey(User)
+# 	name = models.CharField(max_length=50)
 
 
 

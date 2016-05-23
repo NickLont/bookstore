@@ -2,8 +2,8 @@ from django.http import HttpResponse
 from django.shortcuts import render
 
 from carton.cart import Cart
-from bookstore.models import Book, CartBook
-from bookstore.models import Cart as MyCart
+from bookstore.models import Book
+# from bookstore.models import Cart as MyCart
 from django.contrib.sessions.models import Session
 
 
@@ -28,11 +28,11 @@ def show(request):
 	# print s.count
 	return render(request, 'shopping/show-cart.html')
 
-def checkout(request ):
-    #cmd: take user from request.session
-    #cmd: take cart from request.session
-    #cmd: take products from cart
-    #cmd: create MyCart me ton user kai to cart
-    #cmd: for loop gia na kaneis create ola ta CartBook me ta products kai to cart
-    print request.session
-    return render(request, 'shopping/show-cart.html')
+# def checkout(request ):
+#     #cmd: take user from request.session
+#     #cmd: take cart from request.session
+#     #cmd: take products from cart
+#     #cmd: create MyCart me ton user kai to cart
+#     #cmd: for loop gia na kaneis create ola ta CartBook me ta products kai to cart
+#     print request.session
+#     return render(request, 'shopping/show-cart.html')
