@@ -20,7 +20,7 @@
         <tbody>
           <tr>
             <td>{{ item.product }}</td>
-            <td>{{ item.quantity }}</td>
+            <td>{{ item.quantity }}</td>  
             <td>{{ item.subtotal }}</td>
             <td><a href="{% url 'shopping:shopping-cart-remove' item.product.isbn %}" class="btn btn-danger btn-xs">Remove</a></td>
           </tr>    
@@ -32,7 +32,15 @@
             <td>Total: {{ cart.total }}</td>
           </tr>    
           </tbody>
-    </div>  
+      </table>  
+      <p class="text:right">
+        <div class="btn-group pull-right">
+        <a href="{% url 'bookstore:list' %}" class="btn btn-primary">Continue Shopping</a>
+        <a href="{% url 'shopping:shopping-cart-checkout' %}" class="btn btn-success">Checkout</a>
+        </div>
+      </p>     
+    </div>     
 </div>
+  
 {% endblock %}
 
