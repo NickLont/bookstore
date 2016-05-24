@@ -1,22 +1,53 @@
 {% extends 'bookstore/base.html'%}
 {%block content%}
-<h1>Checkout</h1>
-<div class="order-info">
-	<h3>Your order</h3>
-	<ul>
-	{% for item in cart.items %}
-	<li>
-	{{ item.quantity }}x {{ item.product }}
-	<span>${{ item.subtotal }}</span>
-	</li>
-	{% endfor %}
-	</ul>
-	<p>Total: ${{ cart.total }}</p>
+<div class="container ">
+	<div class="well">
+        <div class="row">
+			<h1>Checkout</h1>
+			<div class="col-sm-7">
+				<form action="." method="post" class="order-form">
+					<div class="form-group row">
+						{{ form.as_p }}
+						<p><input type="submit" value="Place order"></p>
+					</div>
+					{% csrf_token %}
+				</form>
+			</div>	
+			<div class="col-sm-5">
+				<div class="order-info">
+					<h3>Your order</h3>
+					<ul>
+					{% for item in cart.items %}
+					<li>
+					{{ item.quantity }}x {{ item.product }}
+					<span>${{ item.subtotal }}</span>
+					</li>
+					{% endfor %}
+					</ul>
+					<p>Total: ${{ cart.total }}</p>
+				</div>
+			</div>
+
+		</div>
+		
+	</div>	
 </div>
-<form action="." method="post" class="order-form">
-	{{ form.as_p }}
-	<p><input type="submit" value="Place order"></p>
-	{% csrf_token %}
-</form>
 
 {% endblock %}
+
+{# <table class="table table-condensed">
+    <thead>
+      <tr>
+        <th>Firstname</th>
+        <th>Lastname</th>
+        <th>Email</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>John</td>
+        <td>Doe</td>
+        <td>john@example.com</td>
+      </tr>
+  </tbody>
+</table> #}
