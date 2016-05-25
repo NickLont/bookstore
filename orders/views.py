@@ -4,7 +4,7 @@ from .forms import OrderCreateForm
 from carton.cart import Cart
 from django.contrib.sessions.models import Session
 from django.conf import settings
-from django.shortcuts import get_object_or_404
+from django.shortcuts import get_object_or_404, get_list_or_404
 
 
 
@@ -32,3 +32,8 @@ def order_show(request, order_id):
 	order = get_object_or_404(Order, id=order_id)
 	context={'order': order}		
 	return render(request, 'orders/invoice.html', context)
+
+def show_history(request):
+	orders = get_list_or_404(Order, placed_by_user= request.user)
+	context = {'orders': orders}
+	return render(request, 'orders/orderHistory.html', context)

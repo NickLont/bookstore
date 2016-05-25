@@ -76,7 +76,7 @@
                     <li class="dropdown">
                         <a href="#" data-toggle="dropdown" class="dropdown-toggle">Welcome {{ user.username}}! <b class="caret"></b></a>
                         <ul class="dropdown-menu">
-                            <li><a href="#">Profile</a></li>
+                            <li><a href="{% url 'orders:show_history' %}">Order History</a></li>
                             <li><a href="/accounts/password/reset/">Change Password</a></li>
                             <li class="divider"></li>
                             <li><a href="/accounts/logout/">Logout</a></li>

@@ -4,7 +4,7 @@
 	<div class="well">
         <div class="row">
 			<h1>Checkout</h1>
-			<div class="col-sm-7">
+			<div class="col-sm-6">
 				<form action="." method="post" class="order-form">
 					<div class="form-group row">
 						{{ form.as_p }}
@@ -13,18 +13,33 @@
 					{% csrf_token %}
 				</form>
 			</div>	
+			
 			<div class="col-sm-5">
 				<div class="order-info">
-					<h3>Your order</h3>
-					<ul>
-					{% for item in cart.items %}
-					<li>
-					{{ item.quantity }}x {{ item.product }}
-					<span>${{ item.subtotal }}</span>
-					</li>
-					{% endfor %}
-					</ul>
-					<p>Total: ${{ cart.total }}</p>
+				<h3>Your order</h3>
+				<table class="table table-condensed">
+				    <thead>
+				      <tr>
+				        <th>Quantity</th>
+				        <th>Quantity</th>
+				        <th>Price</th>
+				      </tr>
+				    </thead>
+				    <tbody>
+				    	{% for item in cart.items %}
+						<tr>
+						<td>{{ item.product }}</td>
+						<td>{{ item.quantity }}</td>
+						<td>{{ item.subtotal }}</td>
+						</tr>
+						{% endfor %}
+						<tr>
+						<td></td>
+						<td></td>
+						<td>Total: {{ cart.total }} Euros</td>
+						</tr>
+				  </tbody>
+				</table>
 				</div>
 			</div>
 
@@ -35,19 +50,31 @@
 
 {% endblock %}
 
-{# <table class="table table-condensed">
-    <thead>
-      <tr>
-        <th>Firstname</th>
-        <th>Lastname</th>
-        <th>Email</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>John</td>
-        <td>Doe</td>
-        <td>john@example.com</td>
-      </tr>
-  </tbody>
-</table> #}
+<div class="col-sm-5">
+	<div class="order-info">
+
+		<table class="table table-condensed">
+		    <thead>
+		      <tr>
+		        <th>Quantity</th>
+		        <th>Product</th>
+		        <th>Price</th>
+		      </tr>
+		    </thead>
+		    <tbody>
+		    	{% for item in cart.items %}
+				<tr>
+				<td>{{ item.quantity }}</td>
+				<td>{{ item.product }}</td>
+				<td>{{ item.subtotal }}</td>
+				</tr>
+				{% endfor %}
+				<tr>
+				<td></td>
+				<td></td>
+				<td>Total: {{ cart.total }} Euros</td>
+				</tr>
+		  </tbody>
+		</table>
+	</div>
+</div>
