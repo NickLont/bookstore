@@ -25,8 +25,14 @@ def remove(request):
 
 def show(request):
 	cart = Cart(request.session)
-	for item in cart.items:
-		print "product: ",item.product
-		print "price: ", item.price
-		print "quantity: ", item.quantity
+	# for item in cart.items:
+	# 	print "product: ",item.product
+	# 	print "price: ", item.price
+	# 	print "quantity: ", item.quantity
+	if request.method == 'POST':
+		isbn = request.POST.get("book_isbn",'')
+		quant = request.POST.get("book_new_quant",'')
+		product = Book.objects.get(isbn=isbn)
+		cart.set_quantity(product, quantity=quant)
+
 	return render(request, 'shopping/show-cart.html')

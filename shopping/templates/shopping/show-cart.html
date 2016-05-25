@@ -36,8 +36,14 @@
         <tbody>
           <tr>
             <td>{{ item.product }}</td>
-            <td>{{ item.quantity }}</td>  
-            <td>{{ item.subtotal }}</td>
+            <td><form target="." method="POST">
+                {% csrf_token %}
+                <input type="hidden" name="book_isbn" value="{{item.product.isbn}}">
+                <input type="number" name="book_new_quant" min="0" step="1" value="{{ item.quantity }}" required>
+                <input type="submit" value="Change Quantity" class="btn btn-info btn-xs">
+              </form>
+            </td>  
+            <td>{{ item.subtotal }}&euro;</td>
             <td>
               <form action="{% url 'shopping:shopping-cart-remove' %}" method="POST">
                 {% csrf_token %}
@@ -51,7 +57,7 @@
             <td></td>
             <td></td>
             <td></td>
-            <td>Total: {{ cart.total }}</td>
+            <td>Total: {{ cart.total }}&euro;</td>
           </tr>    
           </tbody>
       </table>  
