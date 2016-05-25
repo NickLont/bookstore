@@ -6,13 +6,16 @@
 <script type="text/javascript">
   $(document).ready(function () {
 
-    console.log({{ my_cart.count }});
-    if({{ my_cart.count }} ==0){
-      console.log("mpika edw!");
-      $("#checkoutBtn").addClass('disabled');
-      $("#checkoutBtn").removeAttr('data-toggle');
+    if({{ my_cart.count }} !=0){
+      $("#checkoutBtn").prop( "disabled", false );
+      $("#checkoutBtn").attr("data-toggle", "modal");
+      $("#emptyMsg").css("visibility", "hidden");
+    }
+    else{
+      $("#checkoutBtn").prop("disabled", true );
       $("#emptyMsg").css("visibility", "visible");
     }
+
   });
 </script>
 
@@ -35,7 +38,13 @@
             <td>{{ item.product }}</td>
             <td>{{ item.quantity }}</td>  
             <td>{{ item.subtotal }}</td>
-            <td><a href="{% url 'shopping:shopping-cart-remove' item.product.isbn %}" class="btn btn-danger btn-xs">Remove</a></td>
+            <td>
+              <form action="{% url 'shopping:shopping-cart-remove' %}" method="POST">
+                {% csrf_token %}
+                <input type="hidden" name="book_isbn" value="{{item.product.isbn}}">
+                <input type="submit" value="Remove" class="btn btn-danger btn-xs" id="removeButton">              
+              </form>
+            </td>
           </tr>    
         {% endfor %}
           <tr>
@@ -48,8 +57,8 @@
       </table>  
       <p class="text:right">
         <div class="btn-group pull-right">
-        <a href="{% url 'bookstore:list' %}" class="btn btn-primary">Continue Shopping</a>
-        <a href="{% url 'orders:order_create' %}" class="btn btn-success" id="checkoutBtn">Checkout</a>
+          <a href="{% url 'bookstore:list' %}" class="btn btn-primary">Continue Shopping</a>
+          <a href="{% url 'orders:order_create' %}"><button class="btn btn-success" id="checkoutBtn">Checkout</button></a>
         <p style="color:red; text-align:right; visibility: hidden" id="emptyMsg">Cart Empty!</p>
         </div>
       </p>     
