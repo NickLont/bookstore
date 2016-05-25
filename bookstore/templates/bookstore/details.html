@@ -3,8 +3,10 @@
 {%block content%}
 <script type="text/javascript">
 	$(document).ready(function () {
-		
-		if('{{user.is_authenticated}}'=='True' && {{results.quantity}}>1){
+		console.log('user:'+'{{user.is_authenticated}}')
+		console.log('quant is: '+{{results.quantity}})
+
+		if('{{user.is_authenticated}}'=='True' && {{results.quantity}}>0){
 			$("#buyButton").prop( "disabled", false );
 			$("#buyButton").attr("data-toggle", "modal");
 			$("#msg").css("display", "none");
