@@ -6,6 +6,7 @@ from django.contrib.sessions.models import Session
 from django.conf import settings
 from django.shortcuts import get_object_or_404, get_list_or_404
 from suds.client import Client
+from pdf.views import render_to_pdf
 
 soap_client = Client('http://localhost:8080/bookQntWS/bookWS?wsdl')
 
@@ -38,6 +39,11 @@ def order_show(request, order_id):
 	order = get_object_or_404(Order, id=order_id)
 	context={'order': order}		
 	return render(request, 'orders/invoice.html', context)
+
+def order_show_as_pdf(request, order_id):
+	order = get_object_or_404(Order, id=order_id)
+	context={'order': order}		
+	return render_to_pdf('orders/invoice2.html', context)
 
 def show_history(request):
 	orders = get_list_or_404(Order, placed_by_user= request.user)

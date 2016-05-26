@@ -1,7 +1,53 @@
-
-{% extends 'bookstore/base.html'%}
 {% load staticfiles %}
-{%block content%}
+<html>
+<head>
+   /* <style>
+        @page {
+            size: {{ page_size }};
+            margin: 1cm;
+            @frame footer {
+                -pdf-frame-content: footerContent;
+                bottom: 1cm;
+                margin-left: 1cm;
+                margin-right: 1cm;
+                height: 1cm;
+            }
+        }
+    </style>*/
+     <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Hua Bookstore</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href={%static "css/bootstrap.min.css"%} rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href={%static "css/heroic-features.css"%} rel="stylesheet">
+    <link href={%static "css/modern-business.css"%} rel="stylesheet">
+
+
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- jQuery -->
+    <script src={%static "js/jquery.js"%}></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src={%static "js/bootstrap.min.js"%}></script>
+
+</head>
+<body>
+
 
 <link href={%static "css/invoice.css"%} rel="stylesheet">
 
@@ -102,7 +148,10 @@
     		</div>
     	</div>
     </div>
-    <a href="{% url 'orders:order_pdf' order.id %}" class="btn btn-primary" role="button">View PDF</a>
 </div>
 
-{% endblock %}
+<div id="footerContent">
+    <p>Page <pdf:pagenumber> of <pdf:pagecount>&nbsp;</p>
+</div>
+</body>
+</html>
