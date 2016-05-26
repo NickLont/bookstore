@@ -26,7 +26,6 @@ def order_create(request):
 											quantity=item.quantity)
 				old_quantity = soap_client.service.findByIsbn(item.product.isbn).quantity
 				new_quantity = old_quantity - item.quantity
-				print 'new_quantity=',new_quantity
 				soap_client.service.updateQuantity(item.product.isbn, new_quantity)
 			cart.clear()
 			context={'order': order}	

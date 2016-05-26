@@ -1,4 +1,4 @@
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 from carton.cart import Cart
 from bookstore.models import Book
@@ -12,9 +12,9 @@ def show(request):
 		quant = request.POST.get("book_new_quant",'')
 		product = Book.objects.get(isbn=isbn)
 		cart.set_quantity(product, quantity=quant)
-		return render(request, 'shopping/show-cart.html')
-	else:
-		return render(request, 'shopping/show-cart.html')
+	return render(request, 'shopping/show-cart.html')
+	# else:
+	# 	return render(request, 'shopping/show-cart.html')
 
 def add(request):
 	cart = Cart(request.session)
