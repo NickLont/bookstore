@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'carton',
     'shopping',
     'orders',
+    'django_extensions',
 ]
 
 MIDDLEWARE_CLASSES = [
